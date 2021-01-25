@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type='text/css'>
+  canvas {
+    border: 1px solid black;
+  }
+  </style>
+</head>
+<body>
+  <p style="font-size: 24px;">Hello World</p>
+</body>
+<canvas id='canvas' width='200' height='200'></canvas>
+<script src='three.min.js'></script>
+<script>
+
+  const canvas = document.querySelector('#canvas');
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = 'red';
+
+  
+  for (let i = 0; i < 6; i++) {
+    ctx.fillRect(i * 50, i * 50, 50, 50);
+  }
+  ctx.strokeStyle = 'yellow';
+  ctx.lineWidth = 10;
+  ctx.strokeRect(5, 5, canvas.width - 10, canvas.height - 10);
+
+  ctx.strokeStyle = 'blue';
+  ctx.lineWidth = 6;
+// ctx.beginPath();
+// ctx.moveTo(50, 50);
+// ctx.lineTo(150, 150);
+
+// ctx.moveTo(150, 50);
+// ctx.lineTo(50, 150);
+// ctx.stroke();
+const bigHouse = {
+  x: 50,
+  y: 50,
+  roofHeight: 30,
+  houseHeight: 100,
+  houseWidth: 100,
+}
+ 
+const drawHouse = ({ x, y, roofHeight, houseHeight, houseWidth}) => {
+  ctx.beginPath();
+ctx.moveTo(x, y);
+ctx.lineTo(x + houseWidth / 2, y - roofHeight);
+ctx.lineTo(x + houseWidth, y);
+ctx.lineTo(x + houseWidth, y + houseHeight);
+ctx.lineTo(x, y + houseHeight);
+ctx.lineTo(x, y);
+ctx.stroke();
+}
+
+drawHouse(bigHouse);
+
+ctx.beginPath();
+ctx.arc(100, 100, 60, 0, 2* Math.PI, false);
+// ctx.stroke();
+ctx.fill();
+
+const drawCircle = (x, y, radius, isFilled)
+  => {
+    ctx.beginPath();
+  ctx.arc(x, y, radius, 0, 2* Math.PI, false);
+
+  isFilled ? ctx.fill() : ctx.stroke();
+}
+
+</script>
+</html>
