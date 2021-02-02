@@ -3,74 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Canvas 2D Snowman</title>
   <style type='text/css'>
-  canvas {
+  body {
+    margin: 0;
+  }
+  #canvas {
     border: 1px solid black;
   }
   </style>
 </head>
 <body>
-  <p style="font-size: 24px;">Hello World</p>
+  <canvas id='canvas' width='1000' height='700'></canvas>
 </body>
-<canvas id='canvas' width='200' height='200'></canvas>
-<script src='three.min.js'></script>
-<script>
 
+<script>
   const canvas = document.querySelector('#canvas');
   const ctx = canvas.getContext('2d');
-  ctx.fillStyle = 'red';
 
-  
-  for (let i = 0; i < 6; i++) {
-    ctx.fillRect(i * 50, i * 50, 50, 50);
-  }
-  ctx.strokeStyle = 'yellow';
-  ctx.lineWidth = 10;
-  ctx.strokeRect(5, 5, canvas.width - 10, canvas.height - 10);
+  ctx.fillStyle = 'lightblue';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.strokeStyle = 'blue';
-  ctx.lineWidth = 6;
-// ctx.beginPath();
-// ctx.moveTo(50, 50);
-// ctx.lineTo(150, 150);
+  ctx.fillStyle = 'LightCyan';
+  ctx.fillRect(0, canvas.height * 0.6, canvas.width, canvas.height * 0.4);
 
-// ctx.moveTo(150, 50);
-// ctx.lineTo(50, 150);
-// ctx.stroke();
-const bigHouse = {
-  x: 50,
-  y: 50,
-  roofHeight: 30,
-  houseHeight: 100,
-  houseWidth: 100,
-}
- 
-const drawHouse = ({ x, y, roofHeight, houseHeight, houseWidth}) => {
+  ctx.fillStyle = 'darkgray';
+
   ctx.beginPath();
-ctx.moveTo(x, y);
-ctx.lineTo(x + houseWidth / 2, y - roofHeight);
-ctx.lineTo(x + houseWidth, y);
-ctx.lineTo(x + houseWidth, y + houseHeight);
-ctx.lineTo(x, y + houseHeight);
-ctx.lineTo(x, y);
-ctx.stroke();
-}
+  ctx.ellipse(580, 570, 140, 75, 0, 0, 2 * Math.PI);
+  ctx.fill();
 
-drawHouse(bigHouse);
-
-ctx.beginPath();
-ctx.arc(100, 100, 60, 0, 2* Math.PI, false);
-// ctx.stroke();
-ctx.fill();
-
-const drawCircle = (x, y, radius, isFilled)
-  => {
+  const drawCircle = (x, y, radius, isFilled) => {
     ctx.beginPath();
-  ctx.arc(x, y, radius, 0, 2* Math.PI, false);
+    ctx.arc(x, y, radius, 0, 2 * Math.PI);
 
-  isFilled ? ctx.fill() : ctx.stroke();
-}
+    isFilled ? ctx.fill() : ctx.stroke();
+  };
+
+  const drawDot = (x, y) => {
+    ctx.fillStyle = 'black';
+    drawCircle(x, y, 7, true);
+  };
+
+  ctx.fillStyle = 'white';
+
+  drawCircle(500, 200, 70, true);
+  drawCircle(500, 330, 100, true)
+  drawCircle(500, 500, 120, true)
+  
+  drawDot(475, 180);
+  drawDot(525, 180);
+
+  drawDot(500, 280);
+  drawDot(500, 320);
+  drawDot(500, 360);
+  drawDot(500, 450);
+  drawDot(500, 490);
+
+  ctx.strokeStyle = 'black'; 
+  ctx.lineWidth = 5;
+  ctx.beginPath();
+  ctx.arc(500, 200, 40, Math.PI / 8, 7 * Math.PI / 8);
+  ctx.stroke();
+
+  ctx.fillStyle = 'orange';
+
+  ctx.beginPath();
+  ctx.moveTo(500, 200);
+  ctx.lineTo(520, 205);
+  ctx.lineTo(500, 210);
+  ctx.closePath()
+  ctx.fill();
+
+  ctx.fillStyle = 'DimGrey';
+
+  ctx.beginPath();
+  ctx.moveTo(440, 160);
+  ctx.lineTo(550, 150);
+  ctx.lineTo(528, 70);
+  ctx.lineTo(450, 77);
+  // ctx.moveTo(450, 150);
+  // ctx.lineTo(550, 150);
+  // ctx.lineTo(530, 70);
+  // ctx.lineTo(470, 70);
+  ctx.closePath()
+  ctx.fill();
+
+  ctx.strokeStyle = 'SaddleBrown';
+  ctx.lineWidth = 5;
+
+  ctx.beginPath();
+  ctx.moveTo(410, 300);
+  ctx.lineTo(300, 200);
+
+  ctx.moveTo(350, 245);
+  ctx.lineTo(340, 180);
+  ctx.moveTo(350, 245);
+  ctx.lineTo(280, 240);
+
+  ctx.moveTo(660, 255);
+  ctx.lineTo(690, 190);
+  ctx.moveTo(640, 270);
+  ctx.lineTo(700, 265);
+  
+  ctx.moveTo(590, 300);
+  ctx.lineTo(720, 220);
+  ctx.stroke();
 
 </script>
 </html>
